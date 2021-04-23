@@ -47,6 +47,9 @@ function summation( num ) {
 }
 // summation( 4 );
 // console.log('summation( 4 ): ', summation( 4 ));
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // 🦁🦁🦁 Topic 2: ADVANCED Array Methods 🦁🦁🦁
 // Given this zoo data from around the United States, follow the instructions below. Use the specific array methods in the requests below to solve the problems.
@@ -131,7 +134,10 @@ const zooAnimals = [
       }, 0 );
     }
 
-  
+  //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
   // 🦁🦁🦁 Callbacks 🦁🦁🦁  
   /* 🦁🦁🦁 Step 1: Create a higher-order function 🦁🦁🦁
     * Use the higher-order function consume with 3 parameters: a, b and cb
@@ -166,10 +172,10 @@ return `Hello ${fn} ${ln}, nice to meet you!`
   
   // 🦁🦁🦁 Step 3: Check your work by un-commenting the following calls to consume(): 🦁🦁🦁 
   // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
-  // console.log(consume(2, 2, add)); // 4
-  // console.log(consume(10, 16, multiply)); // 160
-  // console.log(consume("Mary", "Poppins", greeting)); // Hello Mary Poppins, nice to meet you!
-  // 
+  console.log(consume(2, 2, add)); // 4
+  console.log(consume(10, 16, multiply)); // 160
+  console.log(consume("Mary", "Poppins", greeting)); // Hello Mary Poppins, nice to meet you!
+  
   /*
   [ Running ] node "c:\NEW_BOOTCAMP\Lambda\CIRRICULUMN\_SPRINTS_OFFICIAL\week3-sprint\web-sprint-challenge-javascript-fundamentals\sandbox.js"
   4
@@ -178,8 +184,9 @@ return `Hello ${fn} ${ln}, nice to meet you!`
     */
 // 🦁💪 Stretch: If you haven't already, convert your array method callbacks into arrow functions - make sure you comment out this section before you submit your work 🦁💪
  
-
-
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 // 🐴🐴🐴 Topic 3: Prototypes 🐴🐴🐴 //
@@ -187,22 +194,21 @@ return `Hello ${fn} ${ln}, nice to meet you!`
 /* 🐴🐴🐴 Step 1: Base Constructor 🐴🐴🐴
  Use the constructor function named CuboidMaker to accept properties for length, width, and height which can be initialized as an object
 */
-function CuboidMaker( properties ) {
-  this.length = properties.length;
-  this.width = properties.length;
-  this.height = properties.height;
+function CuboidMaker( prop ) {
+  this.length = prop.length;
+  this.width = prop.width;
+  this.height = prop.height;
 }
-CuboidMaker.prototype.volume = function ( length, width, height ) {
-  return this.length * this.width * this.height;
-}
+
 
 
 /* 🐴🐴🐴 Step 2: Volume Method 🐴🐴🐴
   Create a method called volume using CuboidMaker's prototype that returns the volume of a given cuboid's length, width, and height
   Formula for cuboid volume: length * width * height   */
 
-
-
+CuboidMaker.prototype.volume = function () {
+  return this.length * this.width * this.height;
+}
 
 
 /* 🐴🐴🐴 Step 3: Surface Area Method 🐴🐴🐴
@@ -210,13 +216,19 @@ CuboidMaker.prototype.volume = function ( length, width, height ) {
   Formula for cuboid surface area of a cube: 
   2 * (length * width + length * height + width * height)  */
 
-
-
+CuboidMaker.prototype.surfaceArea = function () {
+  return 2 * ( this.length * this.width + this.length * this.height + this.width * this.height );
+}
 
 
 /* 🐴🐴🐴 Step 4: Create a new object that uses CuboidMaker 🐴🐴🐴
   Create an object called cuboid that uses the new keyword to use our CuboidMaker constructor
   Add properties and values of length: 4, width: 5, and height: 5 to cuboid. */
+const cuboid = new CuboidMaker( {
+  length: 4,
+  width: 5,
+  height: 5,
+} );
 
 
 
@@ -224,21 +236,83 @@ CuboidMaker.prototype.volume = function ( length, width, height ) {
 
 // 🐴🐴🐴 Test your volume and surfaceArea methods by uncommenting the logs below: 🐴🐴🐴
 // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
-// console.log(cuboid.volume()); // 100
-// console.log(cuboid.surfaceArea()); // 130
+console.log(cuboid.volume()); // 100
+console.log(cuboid.surfaceArea()); // 130
  
 
 // 🦄🦄🦄 Topic 4: Classes 🦄🦄🦄 //
 //🦄🦄🦄 1. Take your prototypes from above and refactor into class syntax. Please rename your class CuboidMakerTwo and your object cuboidTwo 🦄🦄🦄
-class CuboidMakerTwo{
+// class CuboidMakerTwo{
+// 
+// }
+/*
+describe( 'Instance of CuboidMakerTwo', () => {
+  let cuboidTwo
+  beforeEach( () => {
+    cuboidTwo = new functions.CuboidMakerTwo( {
+      length: 4,
+      width: 5,
+      height: 5,
+    } )
+  } )
+  it( '[1] initializes with length', () => {
+    console.log( cuboidTwo );
+    expect( cuboidTwo.length ).toBe( 4 )
+  } )
+  it( '[2] initializes with the width', () => {
+    expect( cuboidTwo.width ).toBe( 5 )
+  } )
+  it( '[3] initializes with an empty height', () => {
+    expect( cuboidTwo.height ).toBe( 5 )
+  } )
+  it( '[4] has volume and surfaceArea methods', () => {
+    expect( cuboidTwo.__proto__.volume ).toBeDefined()
+    expect( cuboidTwo.__proto__.surfaceArea ).toBeDefined()
+  } )
+  it( '[5] has a volume', () => {
+    const vol = cuboidTwo.volume()
+    expect( vol ).toBe( 100 )
+  } )
+  it( '[5] has a surface', () => {
+    const sur = cuboidTwo.surfaceArea()
+    expect( sur ).toBe( 130 )
+  } )
+} )
+*/
+class CuboidMakerTwo {
+  constructor( prop ) {
+    this.length = prop.length;
+    this.width = prop.width;
+    this.height = prop.height;
+  }
 
+  volume() {
+    return this.length * this.width * this.height;
+  }
+
+  surfaceArea() {
+    return 2 * ( ( this.length * this.width ) + ( this.length * this.height ) + ( this.width * this.height ) );
+  }
 }
 
 
-//🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
-// console.log(cuboidTwo.volume()); // 100
-// console.log(cuboidTwo.surfaceArea()); // 130
+let cuboidTwo = new CuboidMakerTwo( {
+  length: 4,
+  width: 5,
+  height: 5
+} );
 
+//🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
+console.log( cuboidTwo.volume() ); // 100
+console.log( cuboidTwo.surfaceArea() ); // 130
+
+
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
