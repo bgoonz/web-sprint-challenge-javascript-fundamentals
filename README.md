@@ -28,14 +28,58 @@ Demonstrate your understanding of this week's concepts by answering the followin
 Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read.
 
 1. Briefly compare and contrast `.forEach` & `.map` (2-3 sentences max)
+> forEach just loops through an array and exicutes a callback once for each element in the array... it's return value is undefined. Array.prototype.map() creates a new array populated with the results of calling a provided function on every element in the calling array. If you want to do something as a result of a forEach than you would need to create a new array or datastructure to store the results of the callback or mutate the original array using a method like .push.
+
+
+
+
 
 2. Explain the difference between a callback and a higher order function.
+>  Higher order functions are functions that operate on other  functions, either by taking them as arguments or by returning them.For example; Array.prototype.map, Array.prototype.filter and  Array.prototype.reduce are some of the Higher-Order functions  built into the JavaScript language. Callbacks on the other hand are functions that are passed into higher order functions as parameters.
+
+
+
+
 
 3. What is closure?
+> Closure is really just when a nested function has access to or even changes the value of a variable declared in the scope of the outer function which contains both the variable in question and the inner function inside that is using it within the more deeply nested scope. The reason it's an interview question is because we can use it to create private state.
+ ```js
+const bankAccount = (initialBalance) => {
+  const balance = initialBalance;
+  return {
+    getBalance: function() {
+      return balance;
+    },
+    deposit: function(amount) {
+      balance += amount;
+      return balance;
+    },
+  };
+};
+const account = bankAccount(100);
+account.getBalance(); // 100
+account.deposit(10); // 110
+```
+
+>Since we're not able to access balance from anywhere outside of the bankAccount function,  we've just created a private variable. bankAccount() is returning an Object with a bunch of functions inside it, and yet when we call account.getBalance(), the function is able to "remember" its initial reference to balance. A more technical definition of closure is when a  function "remembers" its lexical scope (scope at compile time ... or whatever the JavaScript equivalent is... when the code is evaluated and an error might be thrown as a result), even when the function is invoked outside that lexical scope. 
+
+
+
 
 4. Describe the four rules of the 'this' keyword.
 
+```
+-  Global Object Binding: When "this" is in the global scope, it is referring to the window/console.
+-  Implicit Binding: When a function/method is used on an object and "this" is used inside of it, "this" is referring to the object that precedes the dot notation.
+-  New Binding: When a new object is being created, "this" refers to the new object that was created.
+-  Explicit Binding: When using "call or "apply," "this" is explicitly defined.
+ ```
+    
 5. Why do we need super() in an extended class?
+
+>In essance the super keyword tells us to use the parent's properties and methods with a this context that belongs to the extended child class. In a child class, you use super() to call its parent's constructor and super.<methodName> to access its parent's methods.
+
+
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade. 
 
