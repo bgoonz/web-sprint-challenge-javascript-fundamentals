@@ -70,10 +70,18 @@ const zooAnimals = [
   displayNames will be an array of strings, and each string should follow this pattern: "name: {name}, scientific: {scientific name}"
   */
 
-  function animalNames(/*Your Code Here*/){
-    /*Your Code Here*/
-  }
+  // function animalNames(/*Your Code Here*/){
+  //   /*Your Code Here*/
   
+  // }
+    function animalNames( animals ) {
+      let newArr = []
+      animals.forEach( curEle => {
+        newArr.push( `name: ${curEle.animal_name}, scientific: ${curEle.scientific_name}` )
+      } );
+      return newArr;
+    }
+
 
   /* 🦁🦁🦁 Request 2: .map() 🦁🦁🦁
   The zoo needs a list of all their animal's names converted to lower case. 
@@ -81,21 +89,33 @@ const zooAnimals = [
   For example: ['jackal, asiatic', .....]
   */
 
-  function lowerCaseNames(/*Your Code Here*/){
-    /*Your Code Here*/
-  }
-  
+  // function lowerCaseNames(/*Your Code Here*/){
+  //   /*Your Code Here*/
+  // }
+    function lowerCaseNames( animals ) {
+      return animals.map( curEle => curEle.animal_name.toLowerCase() );
+    }
   
   /* 🦁🦁🦁 Request 3: .filter() 🦁🦁🦁
   The zoo is concerned about animals with a lower population count. 
   Using lowPopulationAnimals use .filter() to create a new array of objects which contains only the animals with a population of less than 5.
   */
 
-  function lowPopulationAnimals(/*Your Code Here*/){
-    /*Your Code Here*/
-  }
-  
+  // function lowPopulationAnimals(/*Your Code Here*/){
+  //   /*Your Code Here*/
+  // }
+    function lowPopulationAnimals( animals ) {
+      return animals.filter( curEle => curEle.population < 5 );
+    }
 
+/*
+ FAIL __tests__ / index.test.js( 26.778 s )
+ summation✓ summation returns a number( 2 ms )
+ fooFunction✓ foo returns foo
+ animalNames✓ animalNames returns an array( 1 ms )
+ lowerCaseNames✓ lowerCaseNames returns an array( 1 ms )
+ lowPopulationAnimals✓ animalNames returns an array( 1 ms )
+*/
   /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
   The zoo needs to know their total animal population across the United States. 
   Using USApop find the total population from the zoos array using the .reduce() method. 
